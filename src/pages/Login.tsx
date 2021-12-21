@@ -1,26 +1,28 @@
-import { Link } from "react-router-dom";
-import DummyContentHolder from "../components/dummy/DummyContentHolder";
+import { Link, useNavigate } from "react-router-dom";
+import Card from "../components/UI/Card";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { authActions } from "../store/auth-slice";
 
 const Login = () => {
   const isAuth = useAppSelector(state => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const toggleAuthState = () => {
     if (!isAuth){
       dispatch(authActions.login());
+      navigate('/Profile');
     } else {
       dispatch(authActions.logout());
+      navigate('/');
     }
   }
 
   return (
-    <DummyContentHolder title="Login Page" text="This is the login page">
+    <Card title="Login Page">
+      <p>This is the login page</p>
       <button onClick={toggleAuthState}>Toggle auth state</button>
-      <br />
-      <Link to="/">Back to Home</Link>
-    </DummyContentHolder>
+    </Card>
   );
 };
 

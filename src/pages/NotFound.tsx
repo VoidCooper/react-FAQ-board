@@ -1,12 +1,12 @@
-import DummyContentHolder from "../components/dummy/DummyContentHolder";
+import { Link } from "react-router-dom";
+import Card from "../components/UI/Card";
 
 const NotFound = () => {
   return (
-    <DummyContentHolder
-      title="404"
-      text="Page Not Found"
-      redirectToHome={true}
-    />
+    <Card title="404">
+      <p>Page Not Found</p>
+      <Link to='/'>Back to Home</Link>
+    </Card>
   );
 };
 

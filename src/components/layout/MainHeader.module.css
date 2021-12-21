@@ -25,5 +25,21 @@
 }
 
 .header li {
-    margin: 0 1rem;
-  }
+  margin: 0 1rem;
+}
+
+.nav a{
+  text-decoration: none;
+  color: green;
+  font-size: large;
+  font-weight: bold;
+}
+
+.nav a.active,
+.nav a:active {
+  color: greenyellow;
+}
+
+.nav a:hover {
+  color: yellow;
+}
