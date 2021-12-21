@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { authActions } from "../../store/auth-slice";
 import classes from "./MainHeader.module.css";
@@ -6,8 +7,13 @@ import classes from "./MainHeader.module.css";
 const MainHeader = () => {
   const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
-  const logoutHandler = () => {
+  const navigate = useNavigate();
+
+  const logoutHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
     dispatch(authActions.logout());
+    navigate('/');
   };
 
   return (
@@ -38,15 +44,7 @@ const MainHeader = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  onClick={logoutHandler}
-                  to="/"
-                  className={({ isActive }) => {
-                    return isActive ? classes.active : "";
-                  }}
-                >
-                  LogOut
-                </NavLink>
+                <a onClick={logoutHandler} href='#'>LogOut</a>
               </li>
             </>
           )}
