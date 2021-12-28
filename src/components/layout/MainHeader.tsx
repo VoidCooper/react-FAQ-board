@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { authActions } from "../../store/auth-slice";
+import { authActions } from "store/auth-slice";
 import classes from "./MainHeader.module.css";
 
 const MainHeader = () => {
