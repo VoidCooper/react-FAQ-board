@@ -28,18 +28,25 @@
   margin: 0 1rem;
 }
 
-.nav a{
+.nav a,
+.nav button {
   text-decoration: none;
   color: green;
   font-size: large;
   font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .nav a.active,
-.nav a:active {
+.nav a:active,
+.nav button.active,
+.nav button:active {
   color: greenyellow;
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav button:hover {
   color: yellow;
 }

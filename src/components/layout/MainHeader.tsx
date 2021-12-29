@@ -9,11 +9,11 @@ const MainHeader = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const logoutHandler = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const logoutHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
 
     dispatch(authActions.logout());
-    navigate('/');
+    navigate("/");
   };
 
   return (
@@ -44,7 +44,7 @@ const MainHeader = () => {
                 </NavLink>
               </li>
               <li>
-                <a onClick={logoutHandler} href='#'>LogOut</a>
+                <button onClick={logoutHandler}>LogOut</button>
               </li>
             </>
           )}
