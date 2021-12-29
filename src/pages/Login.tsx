@@ -11,7 +11,7 @@ const Login = () => {
   const toggleAuthState = () => {
     if (!isAuth){
       dispatch(authActions.login());
-      navigate('/Profile');
+      navigate('/');
     } else {
       dispatch(authActions.logout());
       navigate('/');

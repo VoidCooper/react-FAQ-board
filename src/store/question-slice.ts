@@ -45,16 +45,16 @@ const questionSlice = createSlice({
   initialState,
   reducers: {
     addQuestion(state, action) {
-      if (action.payload.type === "question") {
+      if (action.payload.type === QuestionDefObj.type) {
         const q = action.payload as Question;
         state.loadedQuestions?.push(q);
       }
     },
     removeQuestion(state, action) {
-      if (state.loadedQuestions && action.payload.type === "question") {
+      if (state.loadedQuestions && action.payload.type === QuestionDefObj.type) {
         const q = action.payload as Question;
         state.loadedQuestions = state.loadedQuestions.filter(
-          (x) => x.id === q.id
+          (x) => x.id !== q.id
         ) as Question[];
       }
     },

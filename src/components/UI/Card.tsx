@@ -1,11 +1,13 @@
+import React from "react";
 import classes from "./Card.module.css";
 
 const Card: React.FC<{
-  title: string;
+  title?: string;
   children?: JSX.Element | JSX.Element[];
-}> = ({ title, children }) => {
+  onClick?: (values:any) => void;
+}> = ({ title, children, onClick }) => {
   return (
-    <div className={classes.content}>
+    <div onClick={onClick} className={classes.content}>
       {title && <p>{title}</p>}
       {children}
     </div>

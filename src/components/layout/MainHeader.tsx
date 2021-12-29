@@ -33,6 +33,16 @@ const MainHeader = () => {
           </li>
           {isAuth && (
             <>
+            <li>
+                <NavLink
+                  to="/AddQuestion"
+                  className={({ isActive }) => {
+                    return isActive ? classes.active : "";
+                  }}
+                >
+                  Add Question
+                </NavLink>
+              </li>
               <li>
                 <NavLink
                   to="/Profile"

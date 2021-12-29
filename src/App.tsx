@@ -4,8 +4,11 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import classes from "./App.module.css";
+import AddQuestion from "pages/AddQuestion";
+import { useAppSelector } from "hooks";
 
 function App() {
+  const isAuth = useAppSelector(state => state.auth.isAuthenticated);
   return (
     <>
       <MainHeader />
@@ -13,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="Login" element={<Login />} />
+          {isAuth && <Route path="AddQuestion" element={<AddQuestion />} />}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
