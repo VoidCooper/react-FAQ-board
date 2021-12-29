@@ -1,11 +1,10 @@
-import { Guid } from "guid-typescript";
-import Comment from "./comment";
-
 interface Question {
-  type: "Question";
+  type: string;
   id: string;
   text: string;
   comments: string[];
 }
+
+export const QuestionDefObj:Question = {type:'Question', id:'', text:'', comments:[] };
 
 export default Question;
