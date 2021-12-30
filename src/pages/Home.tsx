@@ -2,7 +2,7 @@ import Card from "../components/UI/Card";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { useEffect } from "react";
 import { questionActions } from "store/question-slice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Question from "models/question";
 
 let initFetch = false;
@@ -11,13 +11,13 @@ const Home = () => {
   const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
   const questions = useAppSelector((state) => state.question.loadedQuestions);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (initFetch) {
       return;
     }
-    if (isAuth)
-    {
+    if (isAuth) {
       initFetch = true;
     }
     dispatch(questionActions.fetchQuestions(isAuth));
@@ -25,6 +25,10 @@ const Home = () => {
 
   const removeCardHandler = (q: Question) => {
     dispatch(questionActions.removeQuestion(q));
+  };
+
+  const openCardDetailsHandler = (q: Question) => {
+    navigate(`Question/${q.id}`);
   };
 
   const notLoggedInContent = (
@@ -38,7 +42,7 @@ const Home = () => {
       {questions &&
         questions.map((x) => {
           const cardOnClick = () => {
-            removeCardHandler(x);
+            openCardDetailsHandler(x);
           };
           return (
             <Card key={x.id} title={x.id} onClick={cardOnClick}>

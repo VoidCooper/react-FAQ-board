@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import classes from "./App.module.css";
 import AddQuestion from "pages/AddQuestion";
 import { useAppSelector } from "hooks";
+import QuestionDetails from "pages/QuestionDetails";
 
 function App() {
   const isAuth = useAppSelector(state => state.auth.isAuthenticated);
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="Login" element={<Login />} />
           {isAuth && <Route path="AddQuestion" element={<AddQuestion />} />}
+          {isAuth && <Route path="Question/:id" element={<QuestionDetails />} />}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
