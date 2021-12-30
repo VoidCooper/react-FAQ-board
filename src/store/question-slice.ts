@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import Question from "models/question";
 import { QuestionDefObj } from "models/question";
 import { Guid } from "guid-typescript";
-import QuestionComment from "models/questionComment";
+import QuestionComment, { QuestionCommentDefObj } from "models/questionComment";
 
 interface QuestionState {
   loadedQuestions: Question[];
+  loadedComments: QuestionComment[];
 }
 
 const DUMMY_QUESTIONS: Question[] = [
@@ -19,12 +20,12 @@ const DUMMY_QUESTIONS: Question[] = [
 ];
 
 const DUMMY_COMMENTS: QuestionComment[] = [
-  { id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "1" },
-  { id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "2" },
-  { id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "3" },
-  { id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "4" },
-  { id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "5" },
-  { id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "6" },
+  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "1" } as QuestionComment,
+  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "2" } as QuestionComment,
+  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "3" } as QuestionComment,
+  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "4" } as QuestionComment,
+  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "5" } as QuestionComment,
+  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "6" } as QuestionComment,
 ];
 
 DUMMY_QUESTIONS.forEach((element) => {
@@ -38,7 +39,10 @@ DUMMY_QUESTIONS.forEach((element) => {
   }
 });
 
-const initialState = { loadedQuestions: [] } as QuestionState;
+const initialState = {
+  loadedQuestions: [],
+  loadedComments: [],
+} as QuestionState;
 
 const questionSlice = createSlice({
   name: "question",
@@ -51,7 +55,10 @@ const questionSlice = createSlice({
       }
     },
     removeQuestion(state, action) {
-      if (state.loadedQuestions && action.payload.type === QuestionDefObj.type) {
+      if (
+        state.loadedQuestions &&
+        action.payload.type === QuestionDefObj.type
+      ) {
         const q = action.payload as Question;
         state.loadedQuestions = state.loadedQuestions.filter(
           (x) => x.id !== q.id
@@ -61,8 +68,16 @@ const questionSlice = createSlice({
     fetchQuestions(state, action) {
       if (action.payload) {
         state.loadedQuestions = DUMMY_QUESTIONS;
+        state.loadedComments = DUMMY_COMMENTS;
       }
     },
+    addComment(state, action) {
+      if (action.payload.type === QuestionCommentDefObj.type)
+      {
+        const qCom = action.payload as QuestionComment;
+        state.loadedComments.push(qCom);
+      }
+    }
   },
 });
 
