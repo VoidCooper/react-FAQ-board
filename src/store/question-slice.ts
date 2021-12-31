@@ -38,14 +38,14 @@ const DUMMY_COMMENTS: QuestionComment[] = [
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
     parent: DUMMY_QUESTIONS[1].id,
-    text: "It is simple! Click on the cards to see more comments for them!",
+    text: "Also, the highest ranking comment is shown on the front page! If there is a tie in score, the newest one is shown",
     score: 3,
   } as QuestionComment,
   {
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
     parent: DUMMY_QUESTIONS[1].id,
-    text: "Also, the highest ranking comment is shown on the front page! If there is a tie in score, the newest one is shown",
+    text: "It is simple! Click on the cards to see more comments for them!",
     score: 3,
   } as QuestionComment,
   {
