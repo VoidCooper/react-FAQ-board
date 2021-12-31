@@ -1,7 +1,7 @@
 import { useAppDispatch } from "hooks";
 import QuestionComment from "models/questionComment";
 import React, { ReactElement } from "react";
-import { questionActions } from "store/question-slice";
+import questionSlice, { questionActions } from "store/question-slice";
 import Card from "./UI/Card";
 
 const CommentBox: React.FC<{ comment: QuestionComment }> = (props) => {
@@ -18,6 +18,10 @@ const CommentBox: React.FC<{ comment: QuestionComment }> = (props) => {
     dispatch(questionActions.modifyComment(newC));
   };
 
+  const removeCommentHandler = () => {
+    dispatch(questionSlice.actions.removeComment(props.comment));
+  };
+
   return (
     <Card key={props.comment.id}>
       <div
@@ -26,14 +30,32 @@ const CommentBox: React.FC<{ comment: QuestionComment }> = (props) => {
           alignContent: "space-around",
           alignItems: "center",
           padding: "1em",
+          justifyContent: "space-between",
         }}
       >
-        <div style={{ height: "auto" }}>{props.comment.score}</div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <Card onClick={rateUpHandler} title="Up" />
-          <Card onClick={rateDownHandler} title="Down" />
+        <div
+          style={{
+            display: "flex",
+            alignContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ height: "auto" }}>{props.comment.score}</div>
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <Card onClick={rateUpHandler} title="Up" />
+            <Card onClick={rateDownHandler} title="Down" />
+          </div>
         </div>
-        <div style={{ overflowWrap: "break-word" }}>{props.comment.text}</div>
+        <div
+          style={{
+            overflowWrap: "break-word",
+            overflow: "auto",
+            maxWidth: "70%",
+          }}
+        >
+          {props.comment.text}
+        </div>
+        <Card title="Delete" onClick={removeCommentHandler} />
       </div>
     </Card>
   );

@@ -5,6 +5,12 @@
   text-align: center;
   margin: 1em;
   max-width: 100%;
+  overflow: hidden;
+  width: auto;
+}
+
+.title {
+  margin: 1em;
 }
 
 .content p {

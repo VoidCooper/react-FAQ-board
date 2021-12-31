@@ -11,7 +11,7 @@ const Card: React.FC<{
   {
     return (
       <button onClick={onClick} className={classes.content} style={style}>
-        {title && <p>{title}</p>}
+        {title && <div className={classes.title}>{title}</div>}
         {children}
       </button>
     );
@@ -19,7 +19,7 @@ const Card: React.FC<{
 
   return (
     <div className={classes.content} style={style}>
-      {title && <p>{title}</p>}
+      {title && <div className={classes.title}>{title}</div>}
       {children}
     </div>
   );

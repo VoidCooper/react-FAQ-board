@@ -107,6 +107,14 @@ const questionSlice = createSlice({
         state.loadedComments.push(qCom);
       }
     },
+    removeComment(state, action) {
+      if (action.payload.type === QuestionCommentDefObj.type) {
+        const qCom = action.payload as QuestionComment;
+        state.loadedComments = state.loadedComments.filter(
+          (x) => x.id !== qCom.id
+        );
+      }
+    },
     modifyComment(state, action) {
       if (action.payload.type === QuestionCommentDefObj.type) {
         const qCom = action.payload as QuestionComment;
