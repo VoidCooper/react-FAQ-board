@@ -3,7 +3,7 @@ import classes from "./Card.module.css";
 
 const Card: React.FC<{
   title?: string;
-  children?: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[] | string;
   onClick?: (values:any) => void;
   style?: CSSProperties;
 }> = ({ title, children, onClick, style }) => {

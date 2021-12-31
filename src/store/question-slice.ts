@@ -10,13 +10,21 @@ interface QuestionState {
 }
 
 const DUMMY_QUESTIONS: Question[] = [
-  { ...QuestionDefObj, id: Guid.create().toString(), text: "Eh?" },
-  { ...QuestionDefObj, id: Guid.create().toString(), text: "He?" },
-  { ...QuestionDefObj, id: Guid.create().toString(), text: "She?" },
-  { ...QuestionDefObj, id: Guid.create().toString(), text: "Her?" },
-  { ...QuestionDefObj, id: Guid.create().toString(), text: "Him?" },
-  { ...QuestionDefObj, id: Guid.create().toString(), text: "Who?" },
-  { ...QuestionDefObj, id: Guid.create().toString(), text: "Where?" },
+  {
+    ...QuestionDefObj,
+    id: Guid.create().toString(),
+    text: "What is the purpose of this react application?",
+  },
+  {
+    ...QuestionDefObj,
+    id: Guid.create().toString(),
+    text: "How do I use this react application?",
+  },
+  {
+    ...QuestionDefObj,
+    id: Guid.create().toString(),
+    text: "All my previous comments are gone!",
+  },
 ];
 
 const DUMMY_COMMENTS: QuestionComment[] = [
@@ -24,37 +32,40 @@ const DUMMY_COMMENTS: QuestionComment[] = [
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
     parent: DUMMY_QUESTIONS[0].id,
-    text: "1",
+    text: "The purpose of this react application was for me to try out how react works and showcase the code!",
   } as QuestionComment,
   {
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
-    parent: DUMMY_QUESTIONS[0].id,
-    text: "2",
+    parent: DUMMY_QUESTIONS[1].id,
+    text: "It is simple! Click on the cards to see more comments for them!",
+    score: 3,
   } as QuestionComment,
   {
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
-    parent: DUMMY_QUESTIONS[0].id,
-    text: "3",
+    parent: DUMMY_QUESTIONS[1].id,
+    text: "Also, the highest ranking comment is shown on the front page! If there is a tie in score, the newest one is shown",
+    score: 3,
   } as QuestionComment,
   {
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
-    parent: DUMMY_QUESTIONS[0].id,
-    text: "4",
+    parent: DUMMY_QUESTIONS[1].id,
+    text: "Don't like a comment? You can remove it by clicking the 'delete' button on this comment!",
+    score: 1,
   } as QuestionComment,
   {
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
-    parent: DUMMY_QUESTIONS[0].id,
-    text: "5",
+    parent: DUMMY_QUESTIONS[1].id,
+    text: "Is question spam/unnecessary? Remove it by clicking the delete question below!",
   } as QuestionComment,
   {
     ...QuestionCommentDefObj,
     id: Guid.create().toString(),
-    parent: DUMMY_QUESTIONS[0].id,
-    text: "6",
+    parent: DUMMY_QUESTIONS[2].id,
+    text: "All the questions are lost on page refresh currently, but, it would be easy to add them into local storage. But I haven't done it, because it means less junk in your browser cache. 😎",
   } as QuestionComment,
 ];
 

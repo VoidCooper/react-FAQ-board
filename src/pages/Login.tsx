@@ -20,8 +20,8 @@ const Login = () => {
 
   return (
     <Card title="Login Page">
-      <p>This is the login page</p>
-      <button onClick={toggleAuthState}>Toggle auth state</button>
+      <div>Since this is a demo application, you don't really "Login", so the button below will just tell the rest of the application that you are authenticated! 🔐</div>
+      <Card onClick={toggleAuthState}>Click me to "Login"</Card>
     </Card>
   );
 };

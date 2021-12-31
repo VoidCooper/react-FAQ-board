@@ -12,7 +12,7 @@ const Home = () => {
   const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
   const questions = useAppSelector((state) => state.question.loadedQuestions);
-  const comments = useAppSelector(state => state.question.loadedComments);
+  const comments = useAppSelector((state) => state.question.loadedComments);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,20 +30,21 @@ const Home = () => {
   };
 
   const notLoggedInContent = (
-    <Card title="Home">
-      <p>This is the 'Home' page</p>
+    <Card title="Welcome">
+      <div style={{ margin: "1em" }}>To see the rest of the application "Login" from top right corner!</div>
     </Card>
   );
 
   const loggedInContents = (
-    <>
+    <div style={{ display: "flex" }}>
       {questions &&
         questions.map((x) => {
           const cardOnClick = () => {
             openCardDetailsHandler(x);
           };
           return (
-            <Card key={x.id} title={x.text} onClick={cardOnClick}>
+            <Card key={x.id} onClick={cardOnClick}>
+              <h3>{x.text}</h3>
               <div>{GetHighestRankedComment(x, comments)?.text}</div>
             </Card>
           );
@@ -55,14 +56,14 @@ const Home = () => {
           </p>
         </Card>
       )}
-    </>
+    </div>
   );
 
   return (
-    <>
+    <div>
       {!isAuth && notLoggedInContent}
       {isAuth && loggedInContents}
-    </>
+    </div>
   );
 };
 

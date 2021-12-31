@@ -4,4 +4,6 @@
   justify-content: center;
   margin-top: 1em;
   flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
 }

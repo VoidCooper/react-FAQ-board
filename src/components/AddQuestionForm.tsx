@@ -3,6 +3,7 @@ import { useAppDispatch } from "hooks";
 import { QuestionDefObj } from "models/question";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { questionActions } from "store/question-slice";
 import Card from "./UI/Card";
 
@@ -20,6 +21,7 @@ const AddQuestionForm = () => {
   const [errorState, setErrorState] = useState({} as IError | null);
   const questionInputRef = React.useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,6 +39,7 @@ const AddQuestionForm = () => {
     setInputState("");
     setInputTouched(false);
     setErrorState(null);
+    navigate('/');
   };
 
   const inputValidator = () => {
