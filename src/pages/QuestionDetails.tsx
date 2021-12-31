@@ -54,9 +54,13 @@ const QuestionDetails = () => {
     setCommentValue(commentInputRef.current?.value as string);
   };
 
-  const commentsContent = comments.map((x) => {
-    return <CommentBox key={x.id} comment={x} />
-  });
+  const commentsContent = comments
+    .sort((fir, sec) => {
+      return fir.score > sec.score ? -1 : 1;
+    })
+    .map((x) => {
+      return <CommentBox key={x.id} comment={x} />;
+    });
 
   return (
     <Card title={question?.text} style={{ maxWidth: "80%" }}>
@@ -67,7 +71,7 @@ const QuestionDetails = () => {
           style={{ maxWidth: "80%" }}
           onChange={commentFieldChangedHandler}
         />
-        <Card title="Add Comment" onClick={addCommentHandler}/>
+        <Card title="Add Comment" onClick={addCommentHandler} />
         <br />
         <p>Comments</p>
         {commentsContent}
