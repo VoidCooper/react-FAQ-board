@@ -25,10 +25,6 @@ const Home = () => {
     dispatch(questionActions.fetchQuestions(isAuth));
   });
 
-  const removeCardHandler = (q: Question) => {
-    dispatch(questionActions.removeQuestion(q));
-  };
-
   const openCardDetailsHandler = (q: Question) => {
     navigate(`Question/${q.id}`);
   };

@@ -65,7 +65,7 @@ const AddQuestionForm = () => {
     return () => {
       clearTimeout(timeoutHandle);
     };
-  }, [inputState]);
+  }, [inputState, inputTouched]);
 
   const userInputHandler = () => {
     if (!inputTouched) {

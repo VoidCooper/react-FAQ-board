@@ -1,6 +1,6 @@
 import { useAppDispatch } from "hooks";
 import QuestionComment from "models/questionComment";
-import React, { ReactElement } from "react";
+import React from "react";
 import questionSlice, { questionActions } from "store/question-slice";
 import Card from "../UI/Card";
 import classes from "./CommentBox.module.css";
