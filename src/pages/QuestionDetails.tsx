@@ -1,3 +1,4 @@
+import CommentBox from "components/CommentBox";
 import Card from "components/UI/Card";
 import { Guid } from "guid-typescript";
 import { useAppDispatch, useAppSelector } from "hooks";
@@ -11,7 +12,7 @@ const QuestionDetails = () => {
   const params = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const commentInputRef = useRef<HTMLInputElement>(null);
+  const commentInputRef = useRef<HTMLTextAreaElement>(null);
   const [commentValue, setCommentValue] = useState("");
 
   const loadedQuestions = useAppSelector(
@@ -54,23 +55,19 @@ const QuestionDetails = () => {
   };
 
   const commentsContent = comments.map((x) => {
-    return (
-      <Card key={x.id}>
-        <p>{x.text}</p>
-      </Card>
-    );
+    return <CommentBox key={x.id} comment={x} />
   });
 
   return (
-    <Card title={question?.text}>
+    <Card title={question?.text} style={{ maxWidth: "80%" }}>
       <>
-        <input
-          type="text"
+        <textarea
           ref={commentInputRef}
           value={commentValue}
+          style={{ maxWidth: "80%" }}
           onChange={commentFieldChangedHandler}
         />
-        <Card title="Add Comment" onClick={addCommentHandler} />
+        <Card title="Add Comment" onClick={addCommentHandler}/>
         <br />
         <p>Comments</p>
         {commentsContent}

@@ -20,12 +20,42 @@ const DUMMY_QUESTIONS: Question[] = [
 ];
 
 const DUMMY_COMMENTS: QuestionComment[] = [
-  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "1" } as QuestionComment,
-  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "2" } as QuestionComment,
-  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "3" } as QuestionComment,
-  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "4" } as QuestionComment,
-  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "5" } as QuestionComment,
-  { ...QuestionCommentDefObj, id: Guid.create().toString(), parent: DUMMY_QUESTIONS[0].id, text: "6" } as QuestionComment,
+  {
+    ...QuestionCommentDefObj,
+    id: Guid.create().toString(),
+    parent: DUMMY_QUESTIONS[0].id,
+    text: "1",
+  } as QuestionComment,
+  {
+    ...QuestionCommentDefObj,
+    id: Guid.create().toString(),
+    parent: DUMMY_QUESTIONS[0].id,
+    text: "2",
+  } as QuestionComment,
+  {
+    ...QuestionCommentDefObj,
+    id: Guid.create().toString(),
+    parent: DUMMY_QUESTIONS[0].id,
+    text: "3",
+  } as QuestionComment,
+  {
+    ...QuestionCommentDefObj,
+    id: Guid.create().toString(),
+    parent: DUMMY_QUESTIONS[0].id,
+    text: "4",
+  } as QuestionComment,
+  {
+    ...QuestionCommentDefObj,
+    id: Guid.create().toString(),
+    parent: DUMMY_QUESTIONS[0].id,
+    text: "5",
+  } as QuestionComment,
+  {
+    ...QuestionCommentDefObj,
+    id: Guid.create().toString(),
+    parent: DUMMY_QUESTIONS[0].id,
+    text: "6",
+  } as QuestionComment,
 ];
 
 DUMMY_QUESTIONS.forEach((element) => {
@@ -72,12 +102,24 @@ const questionSlice = createSlice({
       }
     },
     addComment(state, action) {
-      if (action.payload.type === QuestionCommentDefObj.type)
-      {
+      if (action.payload.type === QuestionCommentDefObj.type) {
         const qCom = action.payload as QuestionComment;
         state.loadedComments.push(qCom);
       }
-    }
+    },
+    modifyComment(state, action) {
+      if (action.payload.type === QuestionCommentDefObj.type) {
+        const qCom = action.payload as QuestionComment;
+
+        state.loadedComments = state.loadedComments.map((x) => {
+          if (x.id === qCom.id) {
+            return { ...x, ...qCom };
+          } else {
+            return x;
+          }
+        });
+      }
+    },
   },
 });
 

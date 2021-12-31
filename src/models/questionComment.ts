@@ -3,6 +3,7 @@ interface QuestionComment {
   id: string;
   parent: string;
   text: string;
+  score: number;
 }
 
 export const QuestionCommentDefObj = {
@@ -10,6 +11,7 @@ export const QuestionCommentDefObj = {
   id: "",
   parent: "",
   text: "",
+  score: 0,
 } as QuestionComment;
 
 export default QuestionComment;
