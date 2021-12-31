@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { questionActions } from "store/question-slice";
 import { Link, useNavigate } from "react-router-dom";
 import Question from "models/question";
+import { GetHighestRankedComment } from "lib/questionCommentUtil";
 
 let initFetch = false;
 
@@ -11,6 +12,7 @@ const Home = () => {
   const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
   const dispatch = useAppDispatch();
   const questions = useAppSelector((state) => state.question.loadedQuestions);
+  const comments = useAppSelector(state => state.question.loadedComments);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -45,8 +47,8 @@ const Home = () => {
             openCardDetailsHandler(x);
           };
           return (
-            <Card key={x.id} title={x.id} onClick={cardOnClick}>
-              <p>{x.text}</p>
+            <Card key={x.id} title={x.text} onClick={cardOnClick}>
+              <div>{GetHighestRankedComment(x, comments)?.text}</div>
             </Card>
           );
         })}
