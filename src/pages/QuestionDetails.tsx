@@ -1,4 +1,4 @@
-import CommentBox from "components/CommentBox";
+import CommentBox from "components/Comment/CommentBox";
 import Card from "components/UI/Card";
 import { Guid } from "guid-typescript";
 import { useAppDispatch, useAppSelector } from "hooks";

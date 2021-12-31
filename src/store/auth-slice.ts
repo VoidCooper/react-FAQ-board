@@ -9,7 +9,7 @@ interface AuthState {
 }
 
 const initialState = {
-  isAuthenticated: localStorage.getItem("auth")?.startsWith("t"),
+  isAuthenticated: !!localStorage.getItem("auth")?.startsWith("t"),
 } as AuthState;
 
 const authSlice = createSlice({

@@ -19,7 +19,7 @@ const Card: React.FC<{
 
   return (
     <div className={classes.content} style={style}>
-      {title && <div className={classes.title}>{title}</div>}
+      {title && <h2 className={classes.title}>{title}</h2>}
       {children}
     </div>
   );
