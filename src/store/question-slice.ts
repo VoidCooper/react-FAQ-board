@@ -3,6 +3,9 @@ import Question from "models/question";
 import { QuestionDefObj } from "models/question";
 import { Guid } from "guid-typescript";
 import QuestionComment, { QuestionCommentDefObj } from "models/questionComment";
+import { AppDispatch } from "store";
+import delay from "delay";
+import { loadingActions } from "./loading-slice";
 
 interface QuestionState {
   loadedQuestions: Question[];
@@ -106,10 +109,10 @@ const questionSlice = createSlice({
         ) as Question[];
       }
     },
-    fetchQuestions(state, action) {
+    setQuestions(state, action) {
       if (action.payload) {
-        state.loadedQuestions = DUMMY_QUESTIONS;
-        state.loadedComments = DUMMY_COMMENTS;
+        state.loadedQuestions = action.payload.questions;
+        state.loadedComments = action.payload.comments;
       }
     },
     addComment(state, action) {
@@ -141,6 +144,20 @@ const questionSlice = createSlice({
     },
   },
 });
+
+export const fetchQuestions = async (dispatch: AppDispatch, isAuth: boolean) => {
+  if (!isAuth) {
+    return;
+  }
+  dispatch(loadingActions.startLoading("Fetching questions!"));
+  const response = await delay.range(500, 3000).then(() => {
+    return {questions: DUMMY_QUESTIONS, comments:DUMMY_COMMENTS};
+  });
+  dispatch(loadingActions.endLoading("Questions fetched!"));
+  await delay(500);
+  dispatch(loadingActions.hideLoadModal());
+  dispatch(questionSlice.actions.setQuestions(response));
+}
 
 export const questionActions = questionSlice.actions;
 export default questionSlice;

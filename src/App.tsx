@@ -8,6 +8,7 @@ import AddQuestion from "pages/AddQuestion";
 import { useAppSelector } from "hooks";
 import QuestionDetails from "pages/QuestionDetails";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import LoadingModal from "components/layout/LoadingModal";
 
 function App() {
   const isAuth = useAppSelector((state) => state.auth.isAuthenticated);
@@ -15,6 +16,7 @@ function App() {
   return (
     <>
       <MainHeader />
+      <LoadingModal />
       <div className={classes.main}>
         <TransitionGroup component={null}>
           <CSSTransition key={location.key} classNames="fade" timeout={300}>

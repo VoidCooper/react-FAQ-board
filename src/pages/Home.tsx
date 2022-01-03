@@ -1,7 +1,7 @@
 import Card from "../components/UI/Card";
 import { useAppDispatch, useAppSelector } from "hooks";
 import { useEffect } from "react";
-import { questionActions } from "store/question-slice";
+import { fetchQuestions } from "store/question-slice";
 import { Link, useNavigate } from "react-router-dom";
 import Question from "models/question";
 import { GetHighestRankedComment } from "lib/questionCommentUtil";
@@ -22,7 +22,12 @@ const Home = () => {
     if (isAuth) {
       initFetch = true;
     }
-    dispatch(questionActions.fetchQuestions(isAuth));
+
+    const fetchData = async () => {
+      await fetchQuestions(dispatch, isAuth);
+    };
+
+    fetchData();
   });
 
   const openCardDetailsHandler = (q: Question) => {
@@ -31,7 +36,9 @@ const Home = () => {
 
   const notLoggedInContent = (
     <Card title="Welcome">
-      <div style={{ margin: "1em" }}>To see the rest of the application "Login" from top right corner!</div>
+      <div style={{ margin: "1em" }}>
+        To see the rest of the application "Login" from top right corner!
+      </div>
     </Card>
   );
 

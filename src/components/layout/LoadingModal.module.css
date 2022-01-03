@@ -1,0 +1,18 @@
+.backdrop {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: black;
+    opacity: 0.6;
+}
+
+.message{
+    padding-left: 16vw;
+    padding-right: 16vw;
+    padding-top: 16vh;
+    padding-bottom: 16vh;
+    position: absolute;
+    top: 33%;
+    left: 33%;
+    background-color: white;
+}

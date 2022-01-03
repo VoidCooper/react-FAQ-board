@@ -3,6 +3,10 @@
 // - Possible roles (admin, normal user)
 
 import { createSlice } from "@reduxjs/toolkit";
+import delay from "delay";
+import { NavigateFunction } from "react-router-dom";
+import { AppDispatch } from "store";
+import { loadingActions } from "./loading-slice";
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -26,6 +30,16 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const login = async (dispatch: AppDispatch, navigate:NavigateFunction) => {
+  dispatch(loadingActions.startLoading("Logging in!"));
+  await delay.range(500, 3000);
+  dispatch(loadingActions.endLoading("Logged in!"));
+  dispatch(authSlice.actions.login());
+  await delay(500);
+  dispatch(loadingActions.hideLoadModal());
+  navigate('/');
+}
 
 export const authActions = authSlice.actions;
 export default authSlice;

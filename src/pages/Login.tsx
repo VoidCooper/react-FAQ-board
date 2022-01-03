@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Card from "../components/UI/Card";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { authActions } from "../store/auth-slice";
+import { authActions, login } from "../store/auth-slice";
 
 const Login = () => {
   const isAuth = useAppSelector(state => state.auth.isAuthenticated);
@@ -10,8 +10,7 @@ const Login = () => {
 
   const toggleAuthState = () => {
     if (!isAuth){
-      dispatch(authActions.login());
-      navigate('/');
+      login(dispatch, navigate);
     } else {
       dispatch(authActions.logout());
       navigate('/');
@@ -25,5 +24,7 @@ const Login = () => {
     </Card>
   );
 };
+
+
 
 export default Login;
