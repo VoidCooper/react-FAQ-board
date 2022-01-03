@@ -1,5 +1,5 @@
 .backdrop {
-    width: 100vw;
+    width: 98.75vw;
     height: 100vh;
     position: absolute;
     background-color: black;
@@ -7,8 +7,8 @@
 }
 
 .message{
-    padding-left: 16vw;
-    padding-right: 16vw;
+    padding-left: 14vw;
+    padding-right: 14vw;
     padding-top: 16vh;
     padding-bottom: 16vh;
     position: absolute;
