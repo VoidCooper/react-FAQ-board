@@ -25,7 +25,12 @@ Yes! When I started creating this application, I decided to use Redux for state 
     - "Normal" user to only delete own questions and comments
 - Maybe an feature to hide/delete comments with low score
 
+### How to run after cloning?
+
+Navigate to the folder with your terminal of choice and run `npm install` and `npm start`  
+Developed with node.Js v16.13.0, I don't quarantee it working with newer or older versions.
+
 ### Noticed an issue with the code?
 
-Create a new issue and I will see to it, and propably do something about it.
+Create a new issue and I will see to it, and propably do something about it.  
 Or, if you don't want to open an issue you can contact me on twitter @Void_Cooper
